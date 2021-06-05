@@ -1,5 +1,5 @@
-package com.postserver.post.post;
-
+package com.postserver.post;
+//create to json
 public class Post{
     private String title;
     private String sender;

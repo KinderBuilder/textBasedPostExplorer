@@ -1,10 +1,9 @@
-package com.postserver.post;
 //create to json
 public class Post{
     private String title;
     private String sender;
     private String body;
-    public Post(String s, String t, String b){
+    public Post(String t, String b, String s){
         this.sender = s;
         this.body = b;
         this.title = t;
@@ -29,6 +28,19 @@ public class Post{
     }
     @Override
     public String toString(){
-        return "Title: " + this.title + "\nBody: " + this.body + "\nSent by:" + this.sender + "\n";
+        return "title: " + this.title + "\nbody: " + this.body + "\nsent by:" + this.sender + "\n";
+    }
+    @Override
+    public boolean equals(Object o){
+        System.out.println("Running Equals");
+        boolean isEquals = false;
+        if(o!=null&&o instanceof Post){
+            System.out.println(((Post)o).title);
+            //TypeCasting aka converting variables into other variables similar to it (ex: int to long)
+            if(this.title.equals(((Post) o).title)&&this.body.equals(((Post)o).body)&&this.sender.equals(((Post)o).sender)){
+                isEquals = true;
+            }
+        }
+        return isEquals;
     }
 }

@@ -3,6 +3,8 @@ Inside the client code, create a function called create post
 within this function, use a Scanner to read in the text , title, and sender of the post
 then create a in Object for this post...
 */
+/*
+ */
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,14 +13,45 @@ import java.net.ProtocolException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import java.util.Scanner;
 
 import java.util.ArrayList;
 
+import java.nio.charset.StandardCharsets;
+
+
 public class Main{
     public static void main(String[] args) {
-        System.out.println(setLists());
+        sendPost("wifi","wow","weeeeE");
+    }
+
+    public static void sendPost(String t, String b, String s){
+        try{
+            URL url = new URL("http://127.0.0.1:8080/api/post");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            //create a json
+            byte[] json = ("{\"title\":\""+t+"\",\"sender\":\""+s+"\",\"body\":\""+b+"\"}").getBytes(StandardCharsets.UTF_8);
+            int length = json.length;
+            con.setFixedLengthStreamingMode(length);
+            con.setDoOutput(true);
+            OutputStream out = con.getOutputStream();
+            out.write(json);
+            //think of the BufferedReader as the Youtube gray bar
+            //this decodes the connection.getInputStream
+            BufferedReader decoder = new BufferedReader(
+                new InputStreamReader(con.getInputStream())
+            );
+            System.out.println(decoder.readLine());
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
     
     public static ArrayList<Post> setLists(){

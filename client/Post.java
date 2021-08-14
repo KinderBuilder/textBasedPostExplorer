@@ -9,6 +9,11 @@ public class Post{
         this.body = b;
         this.title = t;
     }
+    public Post(){
+        this.sender = null;
+        this.body = null;
+        this.title = null;
+    }
     public String getBody(){
         return body;
     }

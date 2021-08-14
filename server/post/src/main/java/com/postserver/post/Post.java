@@ -1,3 +1,4 @@
+package com.postserver.post;
 //create to json
 public class Post{
     private String title;

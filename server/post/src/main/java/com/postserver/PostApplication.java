@@ -1,4 +1,4 @@
-package com.postserver.post;
+package com.postserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

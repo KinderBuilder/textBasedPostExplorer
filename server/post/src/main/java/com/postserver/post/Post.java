@@ -33,7 +33,7 @@ public class Post{
     }
     @Override
     public boolean equals(Object o){
-        System.out.println("Running Equals");
+        //System.out.println("Running Equals");
         boolean isEquals = false;
         if(o!=null&&o instanceof Post){
             System.out.println(((Post)o).title);

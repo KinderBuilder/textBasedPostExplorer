@@ -34,15 +34,15 @@ public class PostController{
 		//api handling
 		//Post post = new Post("Hotdogs","something","sleepy");
 		//return List.of(post.toString());
-		return this.ps.getPosts();
+		return this.ps.getPosts(); 
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> savePost(@RequestBody Post p){
 		switch(this.ps.createPost(p)){
 			case 0: return new ResponseEntity<String>("Congratulations, your message can now be seen by everyone!", HttpStatus.OK);
-			case -1: return new ResponseEntity<String>("Something's empty...\n Empty Field", HttpStatus.BAD_REQUEST);
-			case -2: return new ResponseEntity<String>("Where's Waldo? \n Post was missing a field", HttpStatus.BAD_REQUEST);
-			case -3: return new ResponseEntity<String>("There's an imposta here \n Duplicate Comments", HttpStatus.BAD_REQUEST);
+			case -1: return new ResponseEntity<String>("Something's empty...\n Empty Field", HttpStatus.EXPECTATION_FAILED);
+			case -2: return new ResponseEntity<String>("Where's Waldo? \n Post was missing a field", HttpStatus.EXPECTATION_FAILED);
+			case -3: return new ResponseEntity<String>("There's an imposta here \n Duplicate Comments", HttpStatus.CONFLICT);
 			default: return new ResponseEntity<String>("ERRROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR \n An error occured and we don't know why", HttpStatus.BAD_REQUEST);
 		}
 	} 

@@ -22,29 +22,37 @@ public class Main{
     public static void main(String[] args) {
         //instatiate
         Scanner in = new Scanner(System.in);
-        Menu();
-        while(!in.hasNextInt()){
-            System.out.println("Please input a number");
+        while(true){
+            Menu();
+            while(!in.hasNextInt()){
+                System.out.println("Please input a number");
+                in.nextLine();
+                System.out.print(": ");
+            }
+            int choice = in.nextInt();
             in.nextLine();
-            System.out.print(": ");
-        }
-        int choice = in.nextInt();
-        in.nextLine();
-        if(choice == 1){
-            System.out.println("Cool. \nOk than, please input the title of your post");
-            String title = in.nextLine();
-            System.out.println("Next is the body!");
-            String body = in.nextLine();
-            System.out.println("Finally is the sender, aka your name");
-            String sender = in.nextLine();
-            System.out.println(sendPost(title, body, sender));
-        } else if(choice == 2){
-            setLists();
+            if(choice == 1){
+                System.out.println("Cool. \nOk than, please input the title of your post");
+                String title = in.nextLine();
+                System.out.println("Next is the body!");
+                String body = in.nextLine();
+                System.out.println("Finally is the sender, aka your name");
+                String sender = in.nextLine();
+                System.out.println(sendPost(title, body, sender));
+            } else if(choice == 2){
+                ArrayList<Post> savedPost = setLists();
+                for(int i=0; i<savedPost.size();i++){
+                    System.out.println((savedPost.get(i)).toString());
+                }
+            } else if (choice==3){
+                System.out.println("Well than, I'll be seeing you soon... Trust me");
+                break;
+            }
         }
     }
     //this prints out the menu
     public static void Menu(){
-        System.out.println("Hello there potential customer. Would you like to create a post (1). Or would you be interested in viewing some posts?(2)");
+        System.out.println("Hello there potential customer. Would you like to create a post (1). Or would you be interested in viewing some posts (2)? But maybe, just maybe, you're interested on leaving? (3)");
     }
     //this creates Posts
     public static boolean sendPost(String t, String b, String s){
@@ -138,6 +146,9 @@ public class Main{
             System.out.println(e);
         }
         return(null);
+    }
+    public static void idk(){
+        
     }
     /*public static void createPost(){
         Scanner input = new Scanner(System.in);

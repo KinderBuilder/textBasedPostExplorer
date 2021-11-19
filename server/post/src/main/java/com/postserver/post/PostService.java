@@ -1,21 +1,22 @@
 package com.postserver.post;
+import com.postserver.Database;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.crypto.Data;
+
 import org.springframework.stereotype.Service;
 
 @Service
 //create get post
 public class PostService{
-    private List <Post> database;
+    
     
     public PostService(){
-        this.database = new ArrayList<Post>();
-        this.database.add(new Post("Music", "I like Anime... what you thought I was going to talk about music? Uhhh Music. There I talked about music", "-DOGE"));
-        this.database.add(new Post("Anime", "Anime", "-Anime"));
+        Database.addPosts(new Post("Music", "I like Anime... what you thought I was going to talk about music? Uhhh Music. There I talked about music", "-DOGE"));
+        Database.addPosts(new Post("Anime", "Anime", "-Anime"));
     }
-    public List <Post> getPosts(){
-        return this.database;
-    }
+    public ArrayList<Post> getPosts(){return Database.getPosts();}
     public int createPost(Post p){
         /*
             0 is Good
@@ -25,9 +26,9 @@ public class PostService{
         */
         
         if(((!p.getSender().equals(""))&&(!p.getBody().equals(""))&&(!p.getTitle().equals("")))){
-            System.out.println("ByPassed empty, now entering contains");
-            if(!database.contains(p)){
-                database.add(new Post(p.getTitle(), p.getBody(),p.getSender()));
+            //System.out.println("ByPassed empty, now entering contains");
+            if(!Database.containsPosts(p)){
+                Database.addPosts(new Post(p.getTitle(), p.getBody(),p.getSender()));
                 return(0);
             }else{return(-3);}
         }else{return(-2);}

@@ -147,9 +147,6 @@ public class Main{
         }
         return(null);
     }
-    public static void idk(){
-        
-    }
     /*public static void createPost(){
         Scanner input = new Scanner(System.in);
         System.out.println("Please input the sender's name");

@@ -1,9 +1,8 @@
 package com.postserver.post;
+
 import com.postserver.Database;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.crypto.Data;
 
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,6 @@ public class PostService{
         */
         
         if(((!p.getSender().equals(""))&&(!p.getBody().equals(""))&&(!p.getTitle().equals("")))){
-            //System.out.println("ByPassed empty, now entering contains");
             if(!Database.containsPosts(p)){
                 Database.addPosts(new Post(p.getTitle(), p.getBody(),p.getSender()));
                 return(0);

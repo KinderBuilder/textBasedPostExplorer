@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55e9813d7dec50aa04cb934d0ae738f455bbadc1
 //create to json
 public class Post{
     private String title;
